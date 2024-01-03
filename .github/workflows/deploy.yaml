@@ -1,0 +1,26 @@
+name: Deploy to EC2
+
+on:
+  push:
+    branches:
+      - main  # Set to the branch you want to deploy from
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Deploy to EC2
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.EC2_HOST }}  # Your EC2 instance's public IP or domain
+        username: ${{ secrets.EC2_USER }}  # Default is 'ec2-user' for Amazon Linux
+        key: ${{ secrets.MY_SECRETE_KEY }}  # SSH private key
+        script: |
+          cd MyRestartBlog  # Change to the directory where your app is
+          git pull origin main  # Pull the latest code
+          npm install 
+          npm run start 
