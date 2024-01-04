@@ -30,6 +30,6 @@ jobs:
             username: ec2-user # Default is 'ec2-user' for Amazon Linux
             key: ${{ secrets.MY_SECRETE_KEY }}  # SSH private key
             script: |
-                cd /home/ec2-user/app/MyRestartBlog  # Change to the directory where your app is
+                cd /home/ec2-user/app # Change to the directory where your app is
                 npm install 
                 npm run start 
