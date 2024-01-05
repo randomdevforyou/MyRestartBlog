@@ -12,7 +12,7 @@ app.use(express.static("public", {
 
 app.get("/someValue", (req, res) => {
     res.setHeader("cache-control", "s-maxage=600");
-    res.status(410).send("Gone");
+    res.status(403).send("Not allowed");
 });
 
 app.listen(3000, () => {
